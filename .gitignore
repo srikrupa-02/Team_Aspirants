@@ -1,8 +1,19 @@
+# Dependencies
 node_modules/
+
+# Build output
 build/
 dist/
+
+# Test coverage
 coverage/
+
+# macOS
 .DS_Store
+
+# Logs
 *.log
+
+# Environment variables
 .env*
 !.env.example
