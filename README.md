@@ -28,11 +28,11 @@ Buildrex AI solves this by transforming your repository into a searchable, inter
 
 | Category | Technology |
 | :--- | :--- |
-| **Frontend** | React 19, Tailwind CSS v4, Motion, Lucide React |
+| **Frontend** | React 19, Tailwind CSS v4, Motion, Lucide React, Featherless ai |
 | **Backend** | Express, TypeScript, Node.js |
-| **Database** | `node:sqlite` (with PostgreSQL/Supabase compatibility) |
+| **Database** | `node:sqlite` (with PostgreSQL/Supabase compatibility)
 | **AI/LLM** | Google Gemini API, OpenAI API |
-| **Tooling** | Vite 6, esbuild |
+| **Tooling** | Vite 6, esbuild, quen ai |
 
 ## Architecture & Directory Structure
 ```text
@@ -51,6 +51,7 @@ Buildrex AI solves this by transforming your repository into a searchable, inter
 * npm or pnpm
 * GitHub Personal Access Token (with repo read permissions)
 * API Keys for Google Gemini or OpenAI
+* Featherless models
 
 ## Installation
 1. **Clone the repository:**
