@@ -1,0 +1,7 @@
+{
+  "name": "Buildrex AI",
+  "description": "AI-powered developer productivity platform to analyze codebases, understand architecture, chat with repositories, generate documentation, and assess skill gaps.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
