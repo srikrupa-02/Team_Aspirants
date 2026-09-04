@@ -1,123 +1,105 @@
 # Buildrex AI
 
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
-![License](https://img.shields.io/badge/license-MIT-blue)
-![Python](https://img.shields.io/badge/python-3.10+-blue)
-![FastAPI](https://img.shields.io/badge/framework-FastAPI-05998b)
+![Build Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![React](https://img.shields.io/badge/React-19-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)
+![Built with Gemini](https://img.shields.io/badge/AI-Google_Gemini-red)
 
 ## Overview
-**Buildrex AI** is an intelligent developer productivity platform designed to bridge the gap between complex codebases and developer understanding. By leveraging advanced RAG (Retrieval-Augmented Generation) and semantic analysis, Buildrex acts as an autonomous AI engineer that parses your entire repository to provide deep architectural insights, automated documentation, and intelligent code Q&A.
+Buildrex AI is an intelligent developer productivity platform designed to bridge the gap between complex codebase architecture and developer efficiency. By leveraging Retrieval-Augmented Generation (RAG) and advanced repository analysis, Buildrex allows teams to query their codebase, automate documentation, and identify critical knowledge silos within their engineering workflows.
 
 ### The Problem
 Modern development teams struggle with:
-*   **Onboarding friction:** New developers spending weeks understanding legacy code.
-*   **Knowledge silos:** Critical architectural context buried in un-indexed codebases.
-*   **Documentation rot:** READMEs and technical specs failing to sync with the evolving codebase.
-*   **Skill gaps:** Difficulty identifying team-wide technical bottlenecks and learning needs.
+* **Context Overload:** New developers spending weeks just to understand the architecture of a legacy repository.
+* **Documentation Debt:** READMEs that are outdated or non-existent.
+* **Knowledge Silos:** Inability to track skill distribution across large, distributed codebases.
 
----
+Buildrex AI solves this by transforming your repository into a searchable, interactive knowledge base.
 
 ## Key Features
-*   **Repository Analysis:** Automatically maps codebase architecture and detects technology stacks.
-*   **AI-Powered Q&A:** RAG-based engine to answer complex questions about logic, dependencies, and flow.
-*   **Auto-Documentation:** Generates and maintains high-quality `README.md` and technical specifications.
-*   **Skill Gap Analytics:** Analyzes developer contribution patterns to identify areas for professional growth.
-*   **Dependency Mapping:** Visualizes project dependencies and identifies potential security or compatibility risks.
+* **Repository Ingestion:** Seamlessly pull and index GitHub repositories for deep semantic analysis.
+* **RAG-Powered Q&A:** Ask complex questions about your codebase and receive context-aware answers from Google Gemini or OpenAI.
+* **Automated Documentation:** Instantly generate professional-grade `README.md` files based on code structure and dependencies.
+* **Skill Gap Analysis:** Data-driven insights into the technologies used versus team expertise.
+* **Local-First Performance:** Utilizes `node:sqlite` for high-speed local persistence with native Supabase/PostgreSQL migration readiness.
 
----
+## Tech Stack
+
+| Category | Technology |
+| :--- | :--- |
+| **Frontend** | React 19, Tailwind CSS v4, Motion, Lucide React |
+| **Backend** | Express, TypeScript, Node.js |
+| **Database** | `node:sqlite` (with PostgreSQL/Supabase compatibility) |
+| **AI/LLM** | Google Gemini API, OpenAI API |
+| **Tooling** | Vite 6, esbuild |
 
 ## Architecture & Directory Structure
 ```text
-buildrex-ai/
-├── src/
-│   ├── analysis/       # Codebase parsing and AST analysis
-│   ├── llm/            # RAG pipelines and prompting logic
-│   ├── api/            # FastAPI endpoints
-│   ├── db/             # Vector database integration (e.g., Pinecone/Milvus)
-│   └── models/         # Pydantic models and schemas
-├── tests/              # Unit and integration tests
-├── scripts/            # Build and deployment scripts
-├── .env.example        # Environment variables template
-└── README.md
+├── server/             # Backend: API, Auth, GitHub ingestion, AI orchestration
+├── src/                # Frontend: React application
+│   ├── components/     # UI Library (Header, Sidebar, Modals)
+│   ├── context/        # Global Auth & Notification state
+│   ├── pages/          # View layer (Dashboard, RepoAnalyzer, etc.)
+│   └── services/       # API Abstractions
+├── supabase/           # PostgreSQL migration schemas
+└── public/             # Static assets
 ```
 
----
-
-## Tech Stack
-*   **Backend:** Python 3.10+, FastAPI
-*   **LLM Orchestration:** LangChain / LlamaIndex
-*   **Vector Database:** ChromaDB / Pinecone
-*   **Parsing:** Tree-sitter
-*   **Deployment:** Docker, AWS ECS/EKS
-
----
-
 ## Prerequisites
-*   Python 3.10+
-*   Docker & Docker Compose
-*   OpenAI API Key (or local LLM via Ollama)
-*   GitHub Personal Access Token (with repo read permissions)
-
----
+* Node.js (v20+)
+* npm or pnpm
+* GitHub Personal Access Token (with repo read permissions)
+* API Keys for Google Gemini or OpenAI
 
 ## Installation
-1. Clone the repository:
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/srikrupa-02/Team_Aspirants.git
    cd Team_Aspirants
    ```
-2. Create and activate a virtual environment:
+2. **Install dependencies:**
    ```bash
-   python -m venv venv
-   source venv/bin/activate
+   npm install
    ```
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
+3. **Environment Configuration:**
+   Create a `.env` file in the root directory:
+   ```env
+   PORT=3000
+   DATABASE_URL=file:./dev.db
+   GITHUB_TOKEN=your_github_token_here
+   GOOGLE_GENAI_API_KEY=your_gemini_key
+   OPENAI_API_KEY=your_openai_key
+   JWT_SECRET=your_super_secret_key
    ```
-
----
-
-## Environment Variables
-Create a `.env` file in the root directory:
-```env
-OPENAI_API_KEY=your_openai_key_here
-GITHUB_TOKEN=your_github_token_here
-VECTOR_DB_URL=your_vector_db_url
-DATABASE_URL=postgresql://user:pass@localhost:5432/buildrex
-```
-
----
 
 ## Running Locally
-Start the application using:
-```bash
-uvicorn src.api.main:app --reload
-```
-Navigate to `http://localhost:8000/docs` to access the interactive Swagger API documentation.
+* **Development Server:**
+  ```bash
+  npm run dev
+  ```
+* **Production Build:**
+  ```bash
+  npm run build
+  npm run start
+  ```
 
----
-
-## Testing and Linting
-*   **Run tests:** `pytest tests/`
-*   **Lint code:** `flake8 src/`
-*   **Format code:** `black src/`
-
----
+## Testing & Linting
+* **Type Checking:** `npm run type-check`
+* **Linting:** `npm run lint`
 
 ## Deployment
-Buildrex AI is container-ready. 
-1. Build the image: `docker build -t buildrex-ai .`
-2. Deploy via Docker Compose: `docker-compose up -d`
-
----
+Buildrex AI is designed for containerized deployment:
+1. Ensure the `dist` folder is generated via `npm run build`.
+2. Use the `server/` directory as the entry point for your Node.js runtime.
+3. For database persistent storage in production, update the `DATABASE_URL` to point to your Supabase PostgreSQL instance, as the migrations in `supabase/migrations/` are compatible with the schema used in the SQLite local dev environment.
 
 ## Contributing
 We welcome contributions! Please follow these steps:
 1. Fork the repo.
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`).
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-4. Push to the branch (`git push origin feature/AmazingFeature`).
+2. Create a feature branch (`git checkout -b feature/amazing-feature`).
+3. Commit your changes (`git commit -m 'Add amazing feature'`).
+4. Push to the branch (`git push origin feature/amazing-feature`).
 5. Open a Pull Request.
 
 ## License
